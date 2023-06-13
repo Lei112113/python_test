@@ -5,7 +5,7 @@ print('''1.print students' grade
 5.exit''')
 choice=''
 path="class.txt"
-
+sum1 = sum2 = sum3 = 0
 
 while (choice!="5"):
     
@@ -15,7 +15,8 @@ while (choice!="5"):
         case '1':
             with open(path) as file:
              for line in file.readlines():
-                 s = line.split(' ')
+                 s = line.strip()
+                 s = s.split(' ')
                  sum=(float(s[1])+float(s[2])+float(s[3]))
                  final=round(sum/3,2)
                  print(s[0],s[1:4],sum,final)
@@ -53,7 +54,7 @@ while (choice!="5"):
         #另外用dict做一個
         # case '3':
         #     with open(path) as file:
-        #       comparison = {}
+        #     comparison = {}
         #     for line in file.readlines():
               
         #          s = line.split(' ')
@@ -63,13 +64,17 @@ while (choice!="5"):
         #     print(test)
 
         case '4':
+           name = input("enter student's name: ")
            with open(path) as file:
-             for line in file.readlines():
-                 s = line.split(' ')
-                 print(s)
-                 sum=(float(s[1])+float(s[2])+float(s[3]))
-                 final=round(sum/3,2)
-                 print(s[0],s[1:4],sum,final)
+            comparison = {}
+            for line in file.readlines():
+              
+                 s = line.strip()
+                 s = s.split(' ')
+                 comparison[s[0]] = s[1:4]
+                 
+                
+            print(comparison[name])
 
         case '5':
           break; 
