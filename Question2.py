@@ -5,8 +5,8 @@ print('''1.print students' grade
 5.exit''')
 choice=''
 path="class.txt"
-file=open(path,"r")
-sum1=sum2=sum3=0
+
+
 while (choice!="5"):
     
     choice=input("please chose one and enter its number:")
@@ -23,6 +23,7 @@ while (choice!="5"):
             with open(path) as file:
              for line in file.readlines():
                  s = line.split(' ')
+                
                  
                  sum1=sum1+int(s[1])
                  sum2=sum2+int(s[2])
@@ -36,12 +37,17 @@ while (choice!="5"):
                
         case '3':
             with open(path) as file:
+             comparison={}
              for line in file.readlines():
+              
                  s = line.split(' ')
-                 print(s)
-                 sum=(float(s[1])+float(s[2])+float(s[3]))
-                 final=round(sum/3,2)
-                 print(s[0],s[1:4],sum,final)
+                 comparison[s[0]] = float(s[1])+float(s[2])+float(s[3])
+                 test = sorted(comparison.items(), key=lambda x:x[1], reverse=True)
+                
+            print(test)
+                
+                
+                
         case '4':
            with open(path) as file:
              for line in file.readlines():
