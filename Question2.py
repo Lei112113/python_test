@@ -68,14 +68,17 @@ while (choice!="5"):
            with open(path) as file:
             comparison = {}
             for line in file.readlines():
-              
                  s = line.strip()
                  s = s.split(' ')
-                 comparison[s[0]] = s[1:4]
+                 sum=(float(s[1])+float(s[2])+float(s[3]))
+                 final=round(sum/3, 2)
                  
-                
+                 s.append(sum)
+                 s.append(final)
+                 comparison[s[0]] = s[1:6]
+                 
             print(comparison[name])
-
+            
         case '5':
           break; 
         case _:
