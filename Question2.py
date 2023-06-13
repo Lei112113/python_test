@@ -37,11 +37,11 @@ while (choice!="5"):
                
         case '3':
             with open(path) as file:
-             content=[]
+             content = []
              for line in file.readlines():
               
                  s = line.split(' ')
-                 comparison=[]
+                 comparison = []
                  comparison.append(s[0]) 
                  comparison.append(float(s[1])+float(s[2])+float(s[3]))
                  content.append(comparison)
@@ -50,10 +50,18 @@ while (choice!="5"):
             for student in content:
                print(i,student)
                i = i + 1
+        #另外用dict做一個
+        # case '3':
+        #     with open(path) as file:
+        #       comparison = {}
+        #     for line in file.readlines():
+              
+        #          s = line.split(' ')
+        #          comparison[s[0]] = float(s[1])+float(s[2])+float(s[3])
+        #          test = sorted(comparison.items(), key=lambda x:x[1], reverse=True)
+                
+        #     print(test)
 
-                
-                
-                
         case '4':
            with open(path) as file:
              for line in file.readlines():
@@ -62,6 +70,7 @@ while (choice!="5"):
                  sum=(float(s[1])+float(s[2])+float(s[3]))
                  final=round(sum/3,2)
                  print(s[0],s[1:4],sum,final)
+
         case '5':
           break; 
         case _:
