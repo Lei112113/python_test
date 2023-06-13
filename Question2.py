@@ -37,14 +37,20 @@ while (choice!="5"):
                
         case '3':
             with open(path) as file:
-             comparison={}
+             content=[]
              for line in file.readlines():
               
                  s = line.split(' ')
-                 comparison[s[0]] = float(s[1])+float(s[2])+float(s[3])
-                 test = sorted(comparison.items(), key=lambda x:x[1], reverse=True)
-                
-            print(test)
+                 comparison=[]
+                 comparison.append(s[0]) 
+                 comparison.append(float(s[1])+float(s[2])+float(s[3]))
+                 content.append(comparison)
+            content.sort(key=lambda x:x[1], reverse=True)
+            i = 1
+            for student in content:
+               print(i,student)
+               i = i + 1
+
                 
                 
                 
