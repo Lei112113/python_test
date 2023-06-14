@@ -69,9 +69,14 @@ while (choice!="5"):
               s.append(sum)
               s.append(final)
               comparison[s[0]] = s[1:6]
+         sum = 0
          for i in comparison:
             if(name in i ):
                print(i)
+            else:
+               sum = sum + 1
+            if(sum == len(comparison) and name not in i):
+               print('查無此人')
                
         
                 
