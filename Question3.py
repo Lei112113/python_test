@@ -8,6 +8,7 @@ path="class.txt"
 
 class Student:
     s=[]
+    sum=0
     content = []
     def __init__(self):
         with open(path) as file:
@@ -20,7 +21,10 @@ class Student:
         for s in self.s:
             sum=(float(s[1])+float(s[2])+float(s[3]))
             final=round(sum/3,2)
-            print(s[0],s[1:4],sum,final)
+            s.append(sum)
+            s.append(final)
+            print(s)
+
     def two(self):
        sum1 = sum2 = sum3 = 0
        for s in self.s:
@@ -31,35 +35,48 @@ class Student:
             avg2=round(sum2/3,2)
             avg3=round(sum3/3,2)
        print(sum1, sum2, sum3, avg1, avg2, avg3)
+
     def three(self):
       for s in self.s:
-         
-         comparison = []
-         comparison.append(s[0]) 
-         comparison.append(float(s[1])+float(s[2])+float(s[3]))
-         self.content.append(comparison)
-         self.content.sort(key=lambda x:x[1], reverse=True)
+         self.content.append(s) 
+         self.content.sort(key=lambda x:x[5], reverse=True)
          i = 1
       for student in self.content:
-        print(i,student)
+        print(i, student, student[4])
         i = i + 1
+
     def four(self):
      name = input("enter student's name: ")
+     comparison={}
      for s in self.s:
-         comparison={}
-         sum=(float(s[1])+float(s[2])+float(s[3]))
-         final=round(sum/3, 2)
-         
-         s.append(sum)
-         s.append(final)
-         comparison[s[0]] = s[1:6]
-     for name in comparison:
-        if (name in comparison):
-         print(comparison[name])
-        else
+        comparison[s[0]] = s[1:6]
+     sum = 0
+     for i in comparison:
+            if(name in i ):
+               print(i, comparison[i])
+            else:
+               sum = sum + 1
+            if(sum == len(comparison) and name not in i):
+               print('查無此人')
     
     
 student=Student()
-student.four()
+choice=''
+while (choice != '5'):
+   choice = input("please chose one and enter its number:")
+   match choice:
+      case '1':
+         student.one()
+      case '2':
+         student.two()
+      case '3':
+         student.three()
+      case '4':
+         student.four()
+      case '5':
+         break
+      case _:
+          print("請輸入1-5")
+
 
             
