@@ -43,9 +43,23 @@ class Student:
       for student in self.content:
         print(i,student)
         i = i + 1
+    def four(self):
+     name = input("enter student's name: ")
+     for s in self.s:
+         comparison={}
+         sum=(float(s[1])+float(s[2])+float(s[3]))
+         final=round(sum/3, 2)
+         
+         s.append(sum)
+         s.append(final)
+         comparison[s[0]] = s[1:6]
+     for name in comparison:
+        if (name in comparison):
+         print(comparison[name])
+        else
     
     
 student=Student()
-student.three()
+student.four()
 
             
