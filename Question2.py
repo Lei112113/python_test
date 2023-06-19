@@ -1,86 +1,59 @@
-print('''1.print students' grade 
+#為了正規表達式
+import re
+choice = ''
+path = 'class.txt'
+_sum = [0, 0, 0]
+
+def everytodo(line):
+     #去除字尾\n
+        file_item = line.strip()
+        #切割成list
+        file_item = file_item.split(' ')
+        #計算個人總和及平均
+        _sum = (float(file_item[1]) + float(file_item[2]) + float(file_item[3]))
+        _avg = round(_sum / 3, 2)
+
+        #總和及平均塞進list
+        file_item.append(str(_sum)) 
+        file_item.append(str(_avg)) 
+
+        #顯示時不要有[]的處理
+        #1.轉字串
+        file_item = str(file_item)
+        #2.將字串正規去掉不要的符號
+        file_item =  re.sub(r"[\[\]']", "", file_item)
+        return file_item
+
+while (choice != '5'):
+    
+    choice = input('''
+1.print students' grade 
 2.print subject score 
 3.rank students
 4.search for name
-5.exit''')
-choice=''
-path="class.txt"
-sum1 = sum2 = sum3 = 0
-
-while (choice!="5"):
-    
-    choice=input("please chose one and enter its number:")
+5.exit
+please chose one and enter its number: 
+''')
     
     match choice:
         case '1':
-            with open(path) as file:
+            with open(path, 'r') as file:
              for line in file.readlines():
-                 s = line.strip()
-                 s = s.split(' ')
-                 sum=(float(s[1])+float(s[2])+float(s[3]))
-                 final=round(sum/3,2)
-                 print(s[0],s[1:4],sum,final)
+                file_item = everytodo(line)
+                print(file_item)
         case '2':
-            with open(path) as file:
-             for line in file.readlines():
-                 s = line.split(' ')
-                
-                 
-                 sum1=sum1+int(s[1])
-                 sum2=sum2+int(s[2])
-                 sum3=sum3+int(s[3])
-
-                 avg1=round(sum1/3,2)
-                 avg2=round(sum2/3,2)
-                 avg3=round(sum3/3,2)
-            for i in range(1,4):
-                 print( globals()["sum" + str(i)], globals()["avg" + str(i)])
+           pass
                
         case '3':
-            with open(path) as file:
-             content = []
-             for line in file.readlines():
-              
-                 s = line.split(' ')
-                 comparison = []
-                 comparison.append(s[0]) 
-                 comparison.append(float(s[1])+float(s[2])+float(s[3]))
-                 content.append(comparison)
-            content.sort(key=lambda x:x[1], reverse=True)
-            i = 1
-            for student in content:
-               print(i,student)
-               i = i + 1
-        #另外用dict做一個
-        # case '3':
-        #     with open(path) as file:
-        #     comparison = {}
-        #     for line in file.readlines():
-              
-        #          s = line.split(' ')
-        #          comparison[s[0]] = float(s[1])+float(s[2])+float(s[3])
-        #          test = sorted(comparison.items(), key=lambda x:x[1], reverse=True)
-                
-        #     print(test)
+            pass
 
         case '4':
-           name = input("enter student's name: ")
-           with open(path) as file:
-            comparison = {}
-            for line in file.readlines():
-                 s = line.strip()
-                 s = s.split(' ')
-                 sum=(float(s[1])+float(s[2])+float(s[3]))
-                 final=round(sum/3, 2)
-                 
-                 s.append(sum)
-                 s.append(final)
-                 comparison[s[0]] = s[1:6]
-                 
-            print(comparison[name])
-            
+           pass
         case '5':
           break; 
         case _:
-         print("請輸入1-5")
+         print("input 1-5")
+
+
+
    
