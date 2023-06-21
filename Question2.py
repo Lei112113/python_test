@@ -21,6 +21,14 @@ def everytodo(line):
         file_item.append(str(_avg))
         return file_item
 
+def list2string(origin_list):
+    #顯示時不要有[]的處理
+    #1.轉字串
+    file_item = str(origin_list)
+    #2.將字串正規去掉不要的符號
+    file_item =  re.sub(r"[\[\]']", "", file_item)
+    return file_item
+
 while choice != '5':
 
     choice = input('''
@@ -33,19 +41,16 @@ please chose one and enter its number: ''')
 
     match choice:
         case '1':
-            with open(path, 'r') as file:
+            print('name, score1, score2, score3, sum, avg')
+            with open(path, 'r', encoding="utf-8") as file:
                 for line in file.readlines():
                     file_item = everytodo(line)
-                    #顯示時不要有[]的處理
-                    #1.轉字串
-                    file_item = str(file_item)
-                    #2.將字串正規去掉不要的符號
-                    file_item =  re.sub(r"[\[\]']", "", file_item)
-                    print('name, score1, score2, score3, sum, avg')
+                    #將list轉字串後，再將不必要的符號去除
+                    file_item = list2string(file_item)
                     print(file_item)
 
         case '2':
-            with open(path, 'r') as file:
+            with open(path, 'r', encoding="utf-8") as file:
                 for line in file.readlines():
                     file_item = everytodo(line)
                     for idx, x in  enumerate(_sum):
@@ -75,7 +80,7 @@ please chose one and enter its number: ''')
 
         case '3':
             print('ranking, name, score1, score2, score3, sum, avg')
-            with open(path, 'r') as file:
+            with open(path, 'r', encoding="utf-8") as file:
                 for line in file.readlines():
                     file_item = everytodo(line)
 
@@ -92,12 +97,24 @@ please chose one and enter its number: ''')
                     #idx+1 顯示排名 x 是個學生資料
                     print(idx + 1, x)
 
-
-
-
         case '4':
-           pass
+            name = input("enter student's name (case sensitive): ")
+            found = False
+            with open(path, 'r', encoding="utf-8") as file:
+                    for line in file.readlines():
+                        file_item = everytodo(line)
+                        for txt_name in file_item[0]:
+                            if(txt_name == name):
+                                #將list轉字串後，再將不必要的符號去除
+                                file_item = list2string(file_item)
+                                print(file_item)
+                                found = True
+                    if not found:
+                        print("Couldn't find the student.")
+
+
+
         case '5':
           break
         case _:
-         print("input 1-5")
+         print("enter 1-5")
