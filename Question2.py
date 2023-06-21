@@ -99,6 +99,7 @@ please chose one and enter its number: ''')
 
         case '4':
             name = input("enter student's name (case sensitive): ")
+            #為了設定沒有找到學生時的數值
             found = False
             with open(path, 'r', encoding="utf-8") as file:
                     for line in file.readlines():
@@ -108,7 +109,9 @@ please chose one and enter its number: ''')
                                 #將list轉字串後，再將不必要的符號去除
                                 file_item = list2string(file_item)
                                 print(file_item)
+                                #當學生被找到
                                 found = True
+                    #全部都找不到相符的學生
                     if not found:
                         print("Couldn't find the student.")
 
