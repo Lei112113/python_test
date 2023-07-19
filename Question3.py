@@ -1,5 +1,5 @@
-print('''1.print students' grade 
-2.print subject score 
+print('''1.print students' grade
+2.print subject score
 3.rank students
 4.search for name
 5.exit''')
@@ -7,61 +7,34 @@ choice=''
 path="class.txt"
 
 class Student:
-    s=[]
-    sum=0
-    content = []
-    def __init__(self):
-        with open(path) as file:
-          for line in file.readlines():
-             s = line.strip()
-             self.s.append(s.split(' ')) 
-             
-             
-    def one(self):
-        for s in self.s:
-            sum=(float(s[1])+float(s[2])+float(s[3]))
-            final=round(sum/3,2)
-            s.append(sum)
-            s.append(final)
-            print(s)
+   #讀取後數值的預處理
+   def val_preprocess(line):
+     #去除字尾\n
+        file_item = line.strip()
+        #切割成list
+        file_item = file_item.split(' ')
+        #計算個人總和及平均
+        _sum = (float(file_item[1]) + float(file_item[2]) + float(file_item[3]))
+        _avg = round(_sum / 3, 2)
 
-    def two(self):
-       sum1 = sum2 = sum3 = 0
-       for s in self.s:
-            sum1=sum1+int(s[1])
-            sum2=sum2+int(s[2])
-            sum3=sum3+int(s[3]) 
-            avg1=round(sum1/3,2)
-            avg2=round(sum2/3,2)
-            avg3=round(sum3/3,2)
-       print(sum1, sum2, sum3, avg1, avg2, avg3)
+        #總和及平均塞進list
+        file_item.append(str(_sum))
+        file_item.append(str(_avg))
+        return file_item
 
-    def three(self):
-      for s in self.s:
-         self.content.append(s) 
-         self.content.sort(key=lambda x:x[5], reverse=True)
-         i = 1
-      for student in self.content:
-        print(i, student, student[4])
-        i = i + 1
+   #將個人成績的list轉為字串
+   def list2string(origin_list):
+       #每一個人的成績從list轉為字串,用以去除不必要的符號
+       file_item = ' '.join(origin_list)
+       return file_item
 
-    def four(self):
-     name = input("enter student's name: ")
-     comparison={}
-     for s in self.s:
-        comparison[s[0]] = s[1:6]
-     sum = 0
-     for i in comparison:
-            if(name in i ):
-               print(i, comparison[i])
-            else:
-               sum = sum + 1
-            if(sum == len(comparison) and name not in i):
-               print('查無此人')
-    
-    
-student=Student()
-choice=''
+   #1.print students' grade
+   def print_person_grade(_self):
+      print(c)
+
+
+student = Student()
+choice = ''
 while (choice != '5'):
    choice = input("please chose one and enter its number:")
    match choice:
@@ -79,4 +52,4 @@ while (choice != '5'):
           print("請輸入1-5")
 
 
-            
+

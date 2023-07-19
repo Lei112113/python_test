@@ -1,9 +1,7 @@
 #讀取的檔案位置
 path = 'class.txt'
 
-
-
-
+#讀取後數值的預處理
 def val_preprocess(line):
      #去除字尾\n
         file_item = line.strip()
@@ -18,8 +16,9 @@ def val_preprocess(line):
         file_item.append(str(_avg))
         return file_item
 
+#將個人成績的list轉為字串
 def list2string(origin_list):
-    #每一個人的成績從list轉為字串,用以去除不必要的符號
+    #join 每一個人的成績從list轉為字串,用以去除不必要的符號
     file_item = ' '.join(origin_list)
     return file_item
 
@@ -104,6 +103,8 @@ while choice != '5':
             txt_name = input("enter student's name : ")
             #為了設定沒有找到學生時的數值
             found = False
+            #確定指印一次標題
+            i = 0
             with open(path, 'r', encoding="utf-8") as file:
                     for line in file.readlines():
                         #將讀取的值進行預處理，去除不必要的符號及計算總成績等
@@ -112,13 +113,16 @@ while choice != '5':
                         file_item_chk = file_item[0].lower()
 
                         if txt_name in file_item_chk:
-                                #當學生被找到
-                                #將list組成字串
-                                file_item =  list2string(file_item)
-                                #印出學生資料
-                                print(file_item)
-                                #將有沒有找到學生的參數設為true
-                                found = True
+                            if i == 0:
+                                print('name, score1, score2, score3, sum, avg')
+                            i = i + 1
+                            #當學生被找到
+                            #將list組成字串
+                            file_item =  list2string(file_item)
+                            #印出學生資料
+                            print(file_item, i)
+                            #將有沒有找到學生的參數設為true
+                            found = True
                     #全部都找不到相符的學生
                     if not found:
                         print("Couldn't find the student.")
