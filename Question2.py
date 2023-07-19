@@ -91,13 +91,13 @@ while choice != '5':
                     content.sort(key=lambda x:x[4], reverse=True)
 
                 #enumerate 讓 list 可以在 for 有 key 跟 value 可以顯示
-                for idx, x in  enumerate(content):
+                for idx, element in  enumerate(content):
                     #idx+1 顯示排名
-                    x.insert(0, str(idx + 1))
+                    element.insert(0, str(idx + 1))
                     #將list組成字串
-                    x =  list2string(x)
+                    element =  list2string(element)
                     # x 是一個學生資料
-                    print(x)
+                    print(element)
                 content = []
 
         case '4':
