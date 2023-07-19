@@ -1,25 +1,30 @@
-#為了正規表達式
+#為了正規表達式 regular expression
+#import要跟主程式碼至少隔兩行
 import re
+
+#變數要用再宣告，跟要用的地方放一起
 choice = ''
 path = 'class.txt'
 _sum = [0, 0, 0]
 _avg = [0, 0, 0]
 content = []
 
-
+#函數名稱(動詞)
+#命名格式維持
+#函式命名不夠具體表達在做什麼
 def everytodo(line):
-     #去除字尾\n
-        file_item = line.strip()
-        #切割成list
-        file_item = file_item.split(' ')
-        #計算個人總和及平均
-        _sum = (float(file_item[1]) + float(file_item[2]) + float(file_item[3]))
-        _avg = round(_sum / 3, 2)
+    #去除字尾\n
+    file_item = line.strip()
+    #切割成list
+    file_item = file_item.split(' ')
+    #計算個人總和及平均
+    _sum = (float(file_item[1]) + float(file_item[2]) + float(file_item[3]))
+    _avg = round(_sum / 3, 2)
 
-        #總和及平均塞進list
-        file_item.append(str(_sum))
-        file_item.append(str(_avg))
-        return file_item
+    #總和及平均塞進list
+    file_item.append(str(_sum))
+    file_item.append(str(_avg))
+    return file_item
 
 def list2string(origin_list):
     #顯示時不要有[]的處理
@@ -53,8 +58,13 @@ please chose one and enter its number: ''')
             with open(path, 'r', encoding="utf-8") as file:
                 for line in file.readlines():
                     file_item = everytodo(line)
-                    for idx, x in  enumerate(_sum):
-                        _sum[idx] = x + int(file_item[idx + 1])
+                    #enumerate可以丟idx跟element出來，一般情況只能丟element
+                    for idx, x in enumerate(_sum):
+                        '''
+                        FIXME
+                        _sum值異常事後檢查
+                        '''
+                        _sum[idx] = int(x) + int(file_item[idx + 1])
                         _avg[idx] = round(_sum[idx] / 3, 2)
                 #顯示時不要有[]的處理
                 #1.轉字串
@@ -86,34 +96,36 @@ please chose one and enter its number: ''')
 
                     #全部資料都放進 list 方便排序
                     content.append(file_item)
-                    #key是排序的標準 需要透過function才能附值 所以用lambda 將x[4]的值賦予x 而key=x
-                    #reverse=True表示從大排到小
-                    content.sort(key=lambda x:x[4], reverse=True)
+                #key是排序的標準 需要透過function才能附值 所以用lambda 將x[4]的值賦予x 而key=x
+                #reverse=True表示從大排到小
+                content.sort(key=lambda x:x[4], reverse=True)
                 #enumerate 讓 list 可以在 for 有 key 跟 value 可以顯示
                 for idx, x in  enumerate(content):
                     #將list變成字串才能進行正規劃，去除不要的符號(UX表現的部分)
+                    #將名次計入list後去前面寫過的function進行output
                     x = str(x)
                     x =  re.sub(r"[\[\]']", "", x)
                     #idx+1 顯示排名 x 是個學生資料
                     print(idx + 1, x)
 
         case '4':
-            name = input("enter student's name (case sensitive): ")
+            name = input("enter student's name (case sensitive): ") # TODO: should not be case sensitive.
             #為了設定沒有找到學生時的數值
             found = False
             with open(path, 'r', encoding="utf-8") as file:
-                    for line in file.readlines():
-                        file_item = everytodo(line)
-                        for txt_name in file_item[0]:
-                            if(txt_name == name):
-                                #將list轉字串後，再將不必要的符號去除
-                                file_item = list2string(file_item)
-                                print(file_item)
-                                #當學生被找到
-                                found = True
-                    #全部都找不到相符的學生
-                    if not found:
-                        print("Couldn't find the student.")
+                for line in file.readlines():
+                    file_item = everytodo(line)
+                    # FIXME: if txt_name in file_item[0]
+                    for txt_name in file_item[0]:
+                        if(txt_name == name):
+                            #將list轉字串後，再將不必要的符號去除
+                            file_item = list2string(file_item)
+                            print(file_item)
+                            #當學生被找到
+                            found = True
+                #全部都找不到相符的學生
+                if not found:
+                    print("Couldn't find the student.")
 
 
 
