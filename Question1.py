@@ -1,8 +1,5 @@
 path='class.txt'
 
-#為了正規表達式
-import re
-
 #欄位名稱
 print('name, score1, score2, score3, sum, avg')
 #開檔案
@@ -20,10 +17,5 @@ with open(path, 'r', encoding="utf-8") as file:
         file_item.append(str(_sum))
         file_item.append(str(_avg))
 
-        #顯示時不要有[]的處理
-        #1.轉字串
-        file_item = str(file_item)
-        #2.將字串正規去掉不要的符號
-        file_item =  re.sub(r"[\[\]']", "", file_item)
-
-        print(file_item)
+        #每一個人的成績去除不必要的符號
+        print(' '.join(file_item))
