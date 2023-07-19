@@ -14,8 +14,9 @@ with open(path, 'r', encoding="utf-8") as file:
         _avg = round(_sum / 3, 2)
 
         #總和及平均塞進list
+        #這裡如果不轉字串無法用join
         file_item.append(str(_sum))
         file_item.append(str(_avg))
 
-        #每一個人的成績去除不必要的符號
+        #每一個人的成績從list轉為字串,用以去除不必要的符號
         print(' '.join(file_item))
