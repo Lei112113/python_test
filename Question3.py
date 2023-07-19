@@ -29,8 +29,15 @@ class Student:
        return file_item
 
    #1.print students' grade
-   def print_person_grade(_self):
-      print(c)
+   def print_person_grade(self):
+      #1.print students' grade
+      print('name, score1, score2, score3, sum, avg')
+      with open(path, 'r', encoding="utf-8") as file:
+            for line in file.readlines():
+               file_item = self.val_preprocess(line)
+               #將list轉字串後，再將不必要的符號去除
+               file_item = self.list2string(file_item)
+               print(file_item)
 
 
 student = Student()
