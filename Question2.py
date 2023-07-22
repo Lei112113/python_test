@@ -40,8 +40,8 @@ while choice != '5':
         please chose one and enter its number: ''')
 
     match choice:
+        #1.print students' grade
         case '1':
-            #1.print students' grade
             print('name, score1, score2, score3, sum, avg')
             with open(path, 'r', encoding="utf-8") as file:
                 for line in file.readlines():
@@ -50,8 +50,8 @@ while choice != '5':
                     file_item = list2string(file_item)
                     print(file_item)
 
+        # 2.print subject score
         case '2':
-            # 2.print subject score
             with open(path, 'r', encoding="utf-8") as file:
                 for line in file.readlines():
                     file_item = val_preprocess(line)
@@ -75,8 +75,8 @@ while choice != '5':
                 print("score1_avg, score2_avg, score3_avg")
                 print(_avg)
                 '''
+        # 3.rank students
         case '3':
-            # 3.rank students
             print('ranking, name, score1, score2, score3, sum, avg')
             with open(path, 'r', encoding="utf-8") as file:
                 for line in file.readlines():
@@ -99,6 +99,7 @@ while choice != '5':
                     print(element)
                 content = []
 
+        # 4.search for name
         case '4':
             txt_name = input("enter student's name : ")
             #為了設定沒有找到學生時的數值
@@ -128,7 +129,7 @@ while choice != '5':
                         print("Couldn't find the student.")
 
 
-
+        # 5.exit
         case '5':
           break
         case _:
